@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="US-ASCII" standalone="yes"?>
+<GobyMonitor>
+  <Document>
+    <Fields>
+      <Field>
+        <Name>Customer No</Name>
+        <Data>2680</Data>
+      </Field>
+      <Field>
+        <Name>Customer Name</Name>
+        <Data>DJ Plex</Data>
+      </Field>
+      <Field>
+        <Name>Order No</Name>
+        <Data>402864</Data>
+      </Field>
+      <Field>
+        <Name>PO No</Name>
+        <Data>9050</Data>
+      </Field>
+      <Field>
+        <Name>Document Type</Name>
+        <Data>Sales Confirmation</Data>
+      </Field>
+      <Field>
+        <Name>PO Number</Name>
+        <Data>9050</Data>
+      </Field>
+      <Field>
+        <Name>Order Date</Name>
+        <Data>05/30/14</Data>
+      </Field>
+      <Field>
+        <Name>wsf_inbox</Name>
+        <Data>generalinbox</Data>
+      </Field>
+    </Fields>
+    <Files>
+      <File>
+        <Filespec>402864.PDF</Filespec>
+      </File>
+    </Files>
+  </Document>
+</GobyMonitor>

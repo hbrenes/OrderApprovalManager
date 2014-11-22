@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    app.controller('OAMApp.PaymentController', function ($scope, $http) {
+
+
+        $scope.params = {
+            Username: 'testuser',
+            Password: 'testpassword',
+            MerchantId: '14',
+            ResortNumber: '18',
+            TransactionId: '1010102',
+            Reference: 'Travel	Test	reference',
+            Amount: '1',
+            EditReference: 'false',
+            RedirectUrl: 'http://www.google.com'
+        };
+
+        $scope.setPayment = function ($scope) {
+            $http.post('https://payment.resortcom.com/PartnerCreditCard/PartnerAuthorize', $scope.params).success(function (result) {
+                if (result != null) {
+
+                    //Confirmation(result);
+                }
+
+                // window.close();
+            });
+        };
+    });
+</script>
+
+
+<h3>Order Approval Manager - Orders List</h3>
+<br />
+
+
+
+<div ng-controller="OAMApp.PaymentController">
+    <button name="pymt" class="btn btn-primary" ng-click="setPayment()">Pay</button>
+</div>

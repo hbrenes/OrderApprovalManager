@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3cff762a7c84a3d92df93773b74ce53" Name="Diagram1">
+        <EntityTypeShape EntityType="OAMModel.OrderFiles" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OAMModel.OrderHistory" Width="1.5" PointX="5.25" PointY="5.75" />
+        <EntityTypeShape EntityType="OAMModel.Orders" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="OAMModel.OrderStatus" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="OAMModel.Settings" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="OAMModel.FK_OrderHistory_Orders" />
+        <AssociationConnector Association="OAMModel.FK_OrderHistory_OrderStatus" />
+        <AssociationConnector Association="OAMModel.FK_Orders_OrderStatus" />
+        <EntityTypeShape EntityType="OAMModel.OrderComments" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="OAMModel.FK_OrderComments_Orders" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html ng-app="OAMApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAM - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+    <link href="~/Content/angular-busy.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/angular.js" type="text/javascript"></script>
+    <script src="~/Scripts/angular/app.js" type="text/javascript"></script>
+    <script src="~/Scripts/angular/orders-controller.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+
+    
+
+    
+  
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Order Approval Manager", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text">Hello, @User.Identity.Name!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div style="min-height:500px">
+        @RenderBody()
+        </div>
+        
+        <hr />
+        <footer>
+            <p>Order Approval Manager v0.9.1 <br/>&copy; @DateTime.Now.Year CHAUVET® All rights reserved. Powered by: Spirit Technologies®</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-busy.js"></script>
+</body>
+</html>

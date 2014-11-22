@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "Orders List";
+}
+@model OAM.Models.OrderViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container" ng-controller="OAMApp.OrdersController" cg-busy="{promise:promise,templateUrl:templateUrl,message:message,backdrop:backdrop,delay:delay,minDuration:minDuration}">
+
+
+    <h3>OAM - Orders List</h3>
+    <br />
+
+    <div>
+
+
+        <form class="form-inline" role="form">
+            <div class="row">
+
+                <div class="form-group">
+                    <label for="name">Order Status:</label><br />
+                    <select  ng-model="currentStatus" ng-options="status.name for status in OrderStatus" class="form-control">
+                        <option disabled selected>-- Select Option --</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="From">From:</label><br />
+                    <input class="form-control" type="text" id="From" name="From" ng-model="searchFrom" value="" placeholder="Date From" />
+                </div>
+
+                <div class="form-group">
+                    <label for="To">To:</label><br />
+                    <input class="form-control" type="text" id="To" name="To" ng-model="searchTo" value="" placeholder="Date To" />
+                </div>
+
+                <div class="form-group">
+                    <label for="OrderNo">Order No:</label><br />
+                    <input class="smallBox form-control" style="width: 100px" type="text" name="orderNo" ng-model="searchOrderNo" value="" placeholder="Order No" />
+                </div>
+
+
+                <div class="form-group" style="padding-top: 10px">
+                    <br />
+                    <label >
+                        <button class='btn btn-default primary btn-primary' ng-click="Search()">Search</button>
+                        <button ng-show="OrdersList" class='btn btn-danger' ng-click="Clear()">Clear</button>
+                        <!-- Button trigger modal -->
+                        <a ng-show="OrdersList" data-toggle="modal" href="#myModal" class="btn btn-success">Assign</a>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <br />
+                        <input class="checkbox" ng-model="onlyUserOrders" type="checkbox">
+                        Assigned to me
+                    </label>
+                </div>
+            </div>
+            <!-- End Row-->
+        </form>
+
+        <div class="row sm-spacer">
+            <table id="tblOrders" class="table table-striped table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th><div><input type="checkbox" id="allCheck" /></div></th>
+                        <th>Order Date:</th>
+                        <th>Order No:</th>
+                        <th>Customer No:</th>
+                        <th>Customer Name:</th>
+                        <th>Status:</th>
+                        <th>Credit Status:</th>
+                        <th>Assigned To:</th>
+                        <th>Documentation:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in OrdersList.Orders">
+                        <td><div><input type="checkbox" ng-model="order.Selected" /></div></td>
+                        <td>{{order.OrderDate | date : 'MM/dd/yyyy'}}</td>
+                        <td>{{order.OrderNumber}}</td>
+                        <td>{{order.CustomerNumber}}</td>
+                        <td>{{order.CustomerName}}</td>
+                        <td>{{order.Status}}</td>
+                        <td>{{order.CreditStatus}}</td>
+                        <td>{{order.AssignedTo}}</td>
+                        <td><a href="/Orders/Detail/{{order.OrderNumber}}">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <br />
+                        <div class="form-group form-inline">
+                            <label for="user">Select a user to assing the orders: </label>
+                            <select ng-model="OrdersList.userToAssign" ng-options="c.name as c.name for c in AllUsers" class="form-control">
+                                <option disabled selected>-- Select Option --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" ng-click="Assign()" data-dismiss="modal" class="btn btn-primary">Assign</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        @*<script src="~/Scripts/angular/modalOrderAssign.js"></script>
+
+            <div ng-controller="OAMApp.Modals.OrderAssign">
+                <script type="text/ng-template" id="myModalContent.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">{{ modalText }}</h3>
+                    </div>
+                    <div class="modal-body">
+
+                        <br />
+                        <div class="form-group form-inline">
+                            <label for="user">Select a user to assing the orders: </label>
+                            <select ng-model="selectedActiveUser" ng-options="c.id as c.name for c in AllUsers" class="form-control">
+                                <option disabled selected>-- Select Option --</option>
+                            </select>
+                            <p>{{selectedActiveUser}}</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-click="ok()">Assign</button>
+                        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                    </div>
+                </script>
+
+
+            </div>*@
+
+
+
+
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        //$('#allCheck').click(function () {
+        //    var checkBoxes = $('table td input[type="checkbox"]');
+        //    checkBoxes.prop("checked", !checkBoxes.prop("checked"));
+        //});
+
+        $('#From').datepicker();
+        $('#To').datepicker();
+
+
+
+    </script>
+
+</div>
